@@ -1,0 +1,19 @@
+{
+  "name": "pricelistsumba",
+  "version": "1.0.0",
+  "description": "A server of Maji a website to access information and price lists of some vendors cooperating with PT. Sumba Tourist Services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^5.0.0-beta.2",
+    "jsonwebtoken": "^9.0.2",
+    "sequelize": "^6.37.1"
+  }
+}
