@@ -1,12 +1,15 @@
 import express from "express";
+import dotenv from 'dotenv';
+dotenv.config();
 import mongoose from "mongoose";
-import {port, mongoURI} from "./config.js";
 import CategoryVendor from "./models/categoryVendor.js";
 import CategoryItem from "./models/categoryItem.js";
 
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extends:true}))
+const port = process.env.PORT || 8000
+const mongoURI =  process.env.MONGO_URI
 
 app.get("/", (req,res)=>{
     res.send("Welcome to Price List Sumba Server")
@@ -55,7 +58,7 @@ app.get("/itemCategories", async(req,res)=>{
 mongoose.connect(mongoURI).then(()=>{
     console.log("App is connected to DB");
     app.listen(port, ()=>{
-        console.log("Server is ready, sir");
+        console.log(`App is connected to port ${port}`);
     })
 }).catch((err)=>{
     console.log(err);
