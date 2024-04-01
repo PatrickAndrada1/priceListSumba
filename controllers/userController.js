@@ -45,6 +45,15 @@ class UserController {
     }
   }
   // Login User closed
+
+  static async showAllUsers(req,res,next){
+    try {
+      let data = await User.find({})
+      res.status(200).json(data)
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 export default UserController;
