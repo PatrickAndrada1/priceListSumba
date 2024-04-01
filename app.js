@@ -2,8 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
-import CategoryVendor from "./models/categoryVendor.js";
-import CategoryItem from "./models/categoryItem.js";
 import router from "./routers/index.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 

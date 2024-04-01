@@ -13,6 +13,7 @@ class AllItems {
         unit,
         oldPrice,
         newPrice,
+        isDownPrice,
         gap,
       } = req.body;
       let newItem = await Item.create({
@@ -23,6 +24,7 @@ class AllItems {
         unit,
         oldPrice,
         newPrice,
+        isDownPrice,
         gap,
       });
       res.status(201).json({ message: `Item ${newItem.name} has been added` });
@@ -67,6 +69,7 @@ class AllItems {
         unit,
         oldPrice,
         newPrice,
+        isDownPrice,
         gap,
       } = req.body;
       let data = await Item.findByIdAndUpdate(id, {
@@ -77,6 +80,7 @@ class AllItems {
         unit,
         oldPrice,
         newPrice,
+        isDownPrice,
         gap,
       });
       res.status(201).json({ message: `${data.name} has been updated` });
