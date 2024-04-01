@@ -6,6 +6,11 @@ const CategoryVendorSchema = mongoose.Schema(
             type: String,
             require: true
         },
+        // vendors: [{
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     require: true,
+        //     ref: 'Vendor',
+        // }],
     },
     {
         timestamps: true

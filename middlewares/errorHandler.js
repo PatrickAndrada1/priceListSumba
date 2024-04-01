@@ -11,6 +11,10 @@ export async function errorHandler(error,req,res,next){
             status = 401;
             message = "password is required";
             break;
+          case "Category name is required":
+            status = 401;
+            message = "Category name is required";
+            break;
         case "InvalidCredentials":
             status = 401;
             message = "Incorrect username/password"
