@@ -4,18 +4,21 @@ import { hashPassword, compareHash } from "../helper/bcrypt.js";
 import { createToken, decodedToken } from "../helper/jwt.js";
 
 class UserController {
+  // Create User open
   static async register(req, res, next) {
     try {
-      const {username, password} = req.body;
+      const { username, password } = req.body;
       if (!username) throw { name: "username is required" };
       if (!password) throw { name: "password is required" };
-      const newUser = await User.create({username, password, role:"admin"});
+      const newUser = await User.create({ username, password, role: "admin" });
       res.status(201).json(newUser);
     } catch (error) {
       next(error);
     }
   }
+  // Create User closed
 
+  // Login User open
   static async login(req, res, next) {
     try {
       let { username, password } = req.body;
@@ -41,6 +44,7 @@ class UserController {
       next(error);
     }
   }
+  // Login User closed
 }
 
 export default UserController;

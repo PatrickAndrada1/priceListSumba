@@ -1,6 +1,7 @@
 import CategoryItem from "../models/categoryItem.js";
 
 class ItemCategory {
+  // Create CategoryItem open
   static async addCategoryItem(req, res, next) {
     try {
       const { name } = req.body;
@@ -12,7 +13,9 @@ class ItemCategory {
       next(error);
     }
   }
+  // Create CategoryItem closed
 
+  // Get CategoryItem open
   static async showCategoryItem(req, res, next) {
     try {
       let data = await CategoryItem.find({});
@@ -21,6 +24,7 @@ class ItemCategory {
       next(error);
     }
   }
+  // Get CategoryItem closed
 }
 
 export default ItemCategory;

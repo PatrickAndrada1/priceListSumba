@@ -35,10 +35,12 @@ const ItemSchema = mongoose.Schema(
     newPrice: {
       type: Number,
       require: true,
+      value: 0,
     },
     gap: {
       type: Number,
       require: true,
+      value: 0,
     },
   },
   {

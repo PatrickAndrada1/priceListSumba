@@ -1,15 +1,16 @@
 import mongoose from "mongoose";
 
 const CategoryItemSchema = mongoose.Schema(
-    {
-        name: {
-            type: String,
-            require: true
-        },
+  {
+    name: {
+      type: String,
+      require: true,
     },
-    {
-        timestamps: true
-    }
-)
+  },
+  {
+    timestamps: true,
+  }
+);
 
-export default mongoose.model.CategoryItem || mongoose.model('CategoryItem', CategoryItemSchema)
+export default mongoose.model.CategoryItem ||
+  mongoose.model("CategoryItem", CategoryItemSchema);

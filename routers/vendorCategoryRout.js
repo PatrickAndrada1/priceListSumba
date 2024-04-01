@@ -19,5 +19,4 @@ router.get("/showVendorCategories", VendorCategory.showVendorCategories);
 
 export default router;
 
-
 // CRUD done
