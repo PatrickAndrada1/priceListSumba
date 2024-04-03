@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { hashPassword, compareHash } from "../helper/bcrypt.js";
-import passwordValidator from "password-validator";
 import validator from "validator"
 
 const UserSchema = mongoose.Schema(
@@ -30,10 +29,6 @@ const UserSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-UserSchema.pre('save', async function(next){
-  schema.validate(this.password)
-  next()
-})
 
 UserSchema.pre("save", async function (next) {
   if (this.isModified("password")) {

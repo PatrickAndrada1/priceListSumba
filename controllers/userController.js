@@ -54,7 +54,8 @@ class UserController {
     }
   }
   // Login User closed
-
+ 
+  // Show all Users open
   static async showAllUsers(req, res, next) {
     try {
       let data = await User.find({});
@@ -63,6 +64,25 @@ class UserController {
       next(error);
     }
   }
+  // Show all Users closed
+
+  // Change password open
+  static async changePassword(req,res,next){
+    try {
+      let {password, newPassword} = req.body
+      if (!password) throw { name: "password is required" };
+      if (!newPassword) throw { name: "password is required" };
+      let user = await User.findOne({ username: req.user.username });
+      let compared = compareHash(password, user.password);
+      if (!compared) throw { name: "InvalidCredentials" };
+      user.password = newPassword
+      await user.save();
+      res.status(201).json({message: "password successfylly changed, please re-login"})
+    } catch (error) {
+      next(error)
+    }
+  }
+  // Change password closed
 }
 
 export default UserController;
