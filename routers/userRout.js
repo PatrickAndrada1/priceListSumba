@@ -6,7 +6,10 @@ import { authentication } from "../middlewares/authentication.js";
 router.post("/register", UserController.register);
 router.post("/login", UserController.login);
 router.get("/allUsers", UserController.showAllUsers);
-router.use(authentication)
-router.patch("/changePassword", UserController.changePassword)
+router.use(authentication);
+router.patch(
+  "/changePassword",
+  UserController.changePassword
+);
 
 export default router;

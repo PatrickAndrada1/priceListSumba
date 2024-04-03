@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { hashPassword, compareHash } from "../helper/bcrypt.js";
-import validator from "validator"
+import validator from "validator";
+import { passwordValidator } from "../middlewares/passValidator.js";
 
 const UserSchema = mongoose.Schema(
   {
@@ -11,14 +12,16 @@ const UserSchema = mongoose.Schema(
     password: {
       type: String,
       require: true,
-      validate(value) {
-        if (!validator.isLength(value, { min: 6, max: 12 })) {
-          throw Error("Length of the password should be between 6-12");
-        }
-      }
-
-      // minlength:[6, "Password length minimum 6 characters"],
-      // trim:true
+      validate: [
+        {
+          validator: passwordValidator,
+          msg: "Password must not contain any whitespaces",
+        },
+        {
+          validator: (value) => validator.isLength(value, { min: 6, max: 12 }),
+          msg: "Length of the password should be between 6-12",
+        },
+      ],
     },
     role: {
       type: String,
