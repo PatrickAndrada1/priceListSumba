@@ -19,6 +19,10 @@ export async function errorHandler(error, req, res, next) {
       status = 401;
       message = "Incorrect username/password";
       break;
+    // case "ValidationError":
+    //   status = 401;
+    //   message = error.errors.ValidatorError
+    //   break;
 
     default:
       break;
