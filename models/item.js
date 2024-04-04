@@ -35,7 +35,7 @@ const ItemSchema = mongoose.Schema(
     newPrice: {
       type: Number,
       require: true,
-      value: 0,
+      default: 0,
     },
     gap: {
       type: Number,
@@ -44,6 +44,7 @@ const ItemSchema = mongoose.Schema(
     isDownPrice: {
       type: Boolean,
       require: false,
+      default: false,
     },
   },
   {
@@ -52,9 +53,13 @@ const ItemSchema = mongoose.Schema(
 );
 
 ItemSchema.pre("save", async function (next) {
-  let gap = this.oldPrice - this.newPrice;
-  this.gap = gap;
-  this.gap <= 0 ? (this.isDownPrice = false) : (this.isDownPrice = true);
+  if (this.newPrice > 0) {
+    let gap = this.oldPrice - this.newPrice;
+    this.gap = gap;
+    this.gap <= 0 ? (this.isDownPrice = false) : (this.isDownPrice = true);
+  } else {
+    this.gap = 0;
+  }
   next();
 });
 

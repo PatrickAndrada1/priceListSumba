@@ -25,6 +25,30 @@ class ItemCategory {
     }
   }
   // Get CategoryItem closed
+
+  // Geet one Category Item open
+  static async getOneCategoryItem(req, res, next) {
+    try {
+      let data = await CategoryItem.findById(req.params.id);
+      res.status(200).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  // Get one Category Item closed
+
+  // Delete Category Item open
+  static async deleteCategoryItem(req, res, next) {
+    try {
+      let data = await CategoryItem.findByIdAndDelete(id);
+      res
+        .status(201)
+        .json({ message: `${data.name} category item has been deleted` });
+    } catch (error) {
+      next(error);
+    }
+  }
+  // Delete Category Item closed
 }
 
 export default ItemCategory;

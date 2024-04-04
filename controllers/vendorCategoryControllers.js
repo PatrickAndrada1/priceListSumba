@@ -5,7 +5,7 @@ class VendorCategory {
   static async addVendorCategory(req, res, next) {
     try {
       const { name } = req.body;
-      if (!name) throw { name: "Category name is required" };
+      if (!name || name.trim() === "") throw { name: "Category name is required" };
       let data = await CategoryVendor.create({ name });
       res.status(201).json({ message: `${name} category has been created` });
     } catch (error) {

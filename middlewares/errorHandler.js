@@ -19,11 +19,46 @@ export async function errorHandler(error, req, res, next) {
       status = 401;
       message = "Incorrect username/password";
       break;
-    // case "ValidationError":
-    //   status = 401;
-    //   message = error.errors.ValidatorError
-    //   break;
-
+    case "Password doesn't match":
+      status = 401;
+      message = "Password doesn't match";
+      break;
+    case "name is required":
+      status = 401;
+      message = "name is required";
+      break;
+    case "owner is required":
+      status = 401;
+      message = "owner is required";
+      break;
+    case "address is required":
+      status = 401;
+      message = "address is required";
+      break;
+    case "phone number is required":
+      status = 401;
+      message = "phone number is required";
+      break;
+    case "category is required":
+      status = 401;
+      message = "category is required";
+      break;
+    case "vendor name is required":
+      status = 401;
+      message = "vendor name is required";
+      break;
+    case "descriptions is required":
+      status = 401;
+      message = "descriptions is required";
+      break;
+    case "unit is required":
+      status = 401;
+      message = "unit is required";
+      break;
+    case "old price is required":
+      status = 401;
+      message = "old price is required";
+      break;
     default:
       break;
   }

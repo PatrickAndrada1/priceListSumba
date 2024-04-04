@@ -4,19 +4,19 @@ const VendorSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: [true, "name is required"],
     },
     owner: {
       type: String,
-      require: true,
+      required: [true, "owner is required"],
     },
     address: {
       type: String,
-      require: true,
+      required: [true, "address is required"],
     },
     phoneNum: {
       type: String,
-      require: true,
+      required: [true, "phone number is required"],
     },
     category: [
       {
@@ -25,6 +25,11 @@ const VendorSchema = mongoose.Schema(
         ref: "CategoryVendor",
       },
     ],
+    top: {
+      type: String,
+      required: [true, "TOP is required"],
+      default: "N/A",
+    }
   },
   {
     timestamps: true,

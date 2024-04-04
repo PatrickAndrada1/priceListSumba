@@ -8,9 +8,11 @@ class UserController {
   static async register(req, res, next) {
     try {
       const { username, password } = req.body;
-      if (!username) throw { name: "username is required" };
-      if (!password) throw { name: "password is required" };
-      const newUser = await User.create({ username, password, role: "admin" });
+      if (!username || username.trim() === "")
+        throw { name: "username is required" };
+      if (!password | (password.trim() === ""))
+        throw { name: "password is required" };
+      const newUser = await User.create({ username, password, role: "client" });
       res.status(201).json(newUser);
     } catch (error) {
       if (error.name === "ValidationError") {
@@ -21,7 +23,6 @@ class UserController {
           error: message,
         });
       }
-      res.status(400).json(error.message);
       next(error);
     }
   }
@@ -46,7 +47,6 @@ class UserController {
         id: user.id,
         username: user.username,
         role: user.role,
-        password: user.password,
       };
       res.status(200).json({ data });
     } catch (error) {
@@ -74,7 +74,7 @@ class UserController {
       if (!newPassword) throw { name: "password is required" };
       let user = await User.findOne({ username: req.user.username });
       let compared = compareHash(password, user.password);
-      if (!compared) throw { name: "InvalidCredentials" };
+      if (!compared) throw { name: "Password doesn't match" };
       user.password = newPassword;
       await user.save();
       res

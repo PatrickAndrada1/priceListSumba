@@ -1,8 +1,7 @@
 import Item from "../models/item.js";
 
 class AllItems {
-
-    // Create one Item open
+  // Create one Item open
   static async addItem(req, res, next) {
     try {
       const {
@@ -16,6 +15,14 @@ class AllItems {
         isDownPrice,
         gap,
       } = req.body;
+      if (!name || name.trim() === "") throw { name: "name is required" };
+      if (!vendor || vendor.trim() === "") throw { name: "vendor is required" };
+      if (!descriptions || descriptions.trim() === "")
+        throw { name: "descriptions is required" };
+      if (!category || category.trim() === "")
+        throw { name: "category is required" };
+      if (!unit || unit.trim() === "") throw { name: "unit is required" };
+      if (!oldPrice) throw { name: "old price is required" };
       let newItem = await Item.create({
         name,
         vendor,
@@ -72,6 +79,15 @@ class AllItems {
         isDownPrice,
         gap,
       } = req.body;
+      if (!name || name.trim() === "") throw { name: "name is required" };
+      if (!vendor || vendor.trim() === "")
+        throw { name: "vendor name is required" };
+      if (!descriptions || descriptions.trim() === "")
+        throw { name: "descriptions is required" };
+      if (!category || category.trim() === "")
+        throw { name: "category is required" };
+      if (!unit || unit.trim() === "") throw { name: "unit is required" };
+      if (!oldPrice) throw { name: "old price is required" };
       let data = await Item.findByIdAndUpdate(id, {
         name,
         vendor,
@@ -88,9 +104,9 @@ class AllItems {
       next(error);
     }
   }
-   // Update one Item closed
+  // Update one Item closed
 
-   // Delete one Item open
+  // Delete one Item open
   static async deleteOneItem(req, res, next) {
     let id = req.params.id;
     try {
