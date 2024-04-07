@@ -7,11 +7,13 @@ const UserSchema = mongoose.Schema(
   {
     username: {
       type: String,
-      require: true,
+      required: true,
+      unique:true
+      
     },
     password: {
       type: String,
-      require: true,
+      required: true,
       validate: [
         {
           validator: whiteSpaceValidator,
@@ -25,7 +27,7 @@ const UserSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      require: true,
+      required: true,
     },
   },
   {

@@ -70,9 +70,12 @@ class UserController {
   static async changePassword(req, res, next) {
     try {
       let { password, newPassword } = req.body;
-      if (!password) throw { name: "password is required" };
-      if (!newPassword) throw { name: "password is required" };
+      if (!password || password.trim() === "")
+        throw { name: "password is required" };
+      if (!newPassword || newPassword.trim() === "")
+        throw { name: "password is required" };
       let user = await User.findOne({ username: req.user.username });
+      if (!user) throw { name: "Invalid User" };
       let compared = compareHash(password, user.password);
       if (!compared) throw { name: "Password doesn't match" };
       user.password = newPassword;
@@ -93,6 +96,17 @@ class UserController {
     }
   }
   // Change password closed
+
+  // Delete User open
+  static async deleteUser(req, res, next) {
+    try {
+      let data = await User.findByIdAndDelete(id);
+      res.status(201).json({ message: `User ${data.name} has been deleted` });
+    } catch (error) {
+      next(error);
+    }
+  }
+  // Delete User closed
 }
 
 export default UserController;

@@ -19,6 +19,14 @@ export async function errorHandler(error, req, res, next) {
       status = 401;
       message = "Incorrect username/password";
       break;
+    case "Invalid User":
+      status = 401;
+      message = "Invalid User";
+      break;
+    case "forbidden access":
+      status = 401;
+      message = "Forbidden Access";
+      break;
     case "Password doesn't match":
       status = 401;
       message = "Password doesn't match";
