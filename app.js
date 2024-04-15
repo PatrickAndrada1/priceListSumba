@@ -1,7 +1,7 @@
 import express from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
-import mongoose from "mongoose";
 import router from "./routers/index.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
@@ -20,10 +20,7 @@ app.use(errorHandler);
 
 // Connect to DB
 mongoose
-  .connect(mongoURI, {
-    useNewUrlParser: "true",
-    useUnifiedTopology: "true"
-  })
+  .connect(mongoURI)
   .then(() => {
     console.log("App is connected to DB");
     app.listen(port, () => {
