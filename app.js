@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 8000;
 const mongoURI = process.env.MONGO_URI;
+
 app.use("/", router);
 
 app.get("/", (req, res) => {
