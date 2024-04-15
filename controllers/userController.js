@@ -7,12 +7,12 @@ class UserController {
   // Create User open
   static async register(req, res, next) {
     try {
-      const { username, password } = req.body;
+      const { username, password, userType, role } = req.body;
       if (!username || username.trim() === "")
         throw { name: "username is required" };
       if (!password | (password.trim() === ""))
         throw { name: "password is required" };
-      const newUser = await User.create({ username, password, role: "client" });
+      const newUser = await User.create({ username, password, userType, role });
       res.status(201).json(newUser);
     } catch (error) {
       if (error.name === "ValidationError") {
@@ -46,8 +46,10 @@ class UserController {
         access_token: access_token,
         id: user.id,
         username: user.username,
+        userType: user.userType,
         role: user.role,
       };
+      console.log(data);
       res.status(200).json({ data });
     } catch (error) {
       next(error);

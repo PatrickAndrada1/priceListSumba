@@ -13,7 +13,8 @@ export const authentication = async function (req, res, next) {
           req.user = {
             id: data.id,
             username: data.username,
-            role: data.role
+            role: data.role,
+            userType: data.userType
           };
           next();
         } else {

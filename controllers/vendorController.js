@@ -20,7 +20,7 @@ class AllVendor {
         address,
         phoneNum,
         category,
-        top
+        top,
       });
       res
         .status(201)
@@ -65,8 +65,19 @@ class AllVendor {
   static async showVendorsOnCategory(req, res, next) {
     let id = req.params.id;
     try {
-      let data = await Vendor.find({ category: id }); //.populate("CategoryVendor").exec();
-      res.status(200).json(data);
+      if (req.user.userType === "lessPriority") {
+        console.log(req.user.userType);
+        if (id === "65fbec5b248f7124c85ea3b2") {
+          let data1 = await Vendor.find({ category: id });
+          res.status(200).json(data1);
+          console.log(data1);
+        } else {
+          throw { name: "forbidden access" };
+        }
+      } else {
+        let data2 = await Vendor.find({ category: id });
+        res.status(200).json(data2);
+      }
     } catch (error) {
       next(error);
     }
@@ -93,7 +104,7 @@ class AllVendor {
           address,
           phoneNum,
           category,
-          top
+          top,
         },
         { new: true, runValidators: true }
       );

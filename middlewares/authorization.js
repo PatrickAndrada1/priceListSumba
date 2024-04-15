@@ -13,7 +13,7 @@ export const authorization = async function (req, res, next) {
       // if (user.id !== req.user.id) {
       //   throw { name: "forbidden access" };
       // }
-      next();
+      // next();
     }
   } catch (error) {
     next(error);
@@ -32,3 +32,4 @@ export const authorization = async function (req, res, next) {
 //     next(error);
 //   }
 // };
+

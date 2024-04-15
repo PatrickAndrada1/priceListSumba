@@ -8,8 +8,7 @@ const UserSchema = mongoose.Schema(
     username: {
       type: String,
       required: true,
-      unique:true
-      
+      unique: true,
     },
     password: {
       type: String,
@@ -26,6 +25,10 @@ const UserSchema = mongoose.Schema(
       ],
     },
     role: {
+      type: String,
+      required: true,
+    },
+    userType: {
       type: String,
       required: true,
     },
