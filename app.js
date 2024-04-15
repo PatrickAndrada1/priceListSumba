@@ -20,7 +20,10 @@ app.use(errorHandler);
 
 // Connect to DB
 mongoose
-  .connect(mongoURI)
+  .connect(mongoURI, {
+    useNewUrlParser: "true",
+    useUnifiedTopology: "true"
+  })
   .then(() => {
     console.log("App is connected to DB");
     app.listen(port, () => {
