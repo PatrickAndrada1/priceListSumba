@@ -20,7 +20,7 @@ app.use(errorHandler);
 
 // Connect to DB
 mongoose
-  .connect(`${mongoURI}`)
+  .connect(mongoURI)
   .then(() => {
     console.log("App is connected to DB");
     app.listen(port, () => {
