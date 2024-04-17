@@ -25,7 +25,6 @@ app.use(errorHandler);
 mongoose
   .connect(mongoURI)
   .then(() => {
-    console.log(mongoURI)
     console.log("App is connected to DB");
     app.listen(port, () => {
       console.log(`App is connected to port ${port}`);
