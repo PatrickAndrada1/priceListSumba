@@ -15,10 +15,6 @@ const mongoURI = process.env.MONGO_URI;
 
 app.use("/", router);
 
-app.get("/", (req, res) => {
-  res.send("Welcome to Price List Sumba Server");
-});
-
 app.use(errorHandler);
 
 // Connect to DB

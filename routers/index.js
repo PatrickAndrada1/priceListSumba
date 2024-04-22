@@ -7,6 +7,9 @@ import itemCategoryRout from "./itemCategoryRout.js";
 import itemRout from "./itemRout.js";
 import { authentication } from "../middlewares/authentication.js";
 
+router.use("/", (req, res) => {
+    res.send("Welcome to Price List Sumba Server");
+  });
 router.use("/users", userRout);
 router.use(authentication)
 router.use("/vendorCategories", vendorCategoryRout);
