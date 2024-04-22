@@ -8,7 +8,7 @@ import itemRout from "./itemRout.js";
 import { authentication } from "../middlewares/authentication.js";
 
 router.use("/users", userRout);
-router.use(authentication)
+// router.use(authentication)
 router.use("/vendorCategories", vendorCategoryRout);
 router.use("/vendors", vendorRout);
 router.use("/itemCategories", itemCategoryRout);
